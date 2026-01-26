@@ -23,7 +23,8 @@ jobs:
 
   has-changes:
     name: Have specs, configurations, or pipeline files changed
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     outputs:
       are-changes: ${{ steps.changed-files.outputs.files }}
