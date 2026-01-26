@@ -32,9 +32,9 @@ jobs:
 
       - name: Setup deck
         uses: kong/setup-deck@v1
-        with:
-          deck-version: '1.55.0'
-          wrapper: false
+        # with:
+        #   deck-version: '1.55.0'
+        #   wrapper: false
 
       - name: stage combined file for PRD
         run: cp platform/kong/.generated/kong.yaml PRD/kong/kong.yaml
