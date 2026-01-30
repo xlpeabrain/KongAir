@@ -41,10 +41,10 @@ jobs:
 
       - name: Create deck config
         run: |
-        echo "skip-workspace-crud: true" > ~/.deck.yaml
-        echo "headers: Kong-Admin-Token:${{ secrets.KONG_ADMIN_TOKEN_DEV }}" >> ~/.deck.yaml
-        echo "kong-addr: $KONG_ADDR_DEV" >> ~/.deck.yaml
-        echo "Deck config: "
+        echo "skip-workspace-crud: true" > ~/.deck.yaml |
+        echo "headers: Kong-Admin-Token:${{ secrets.KONG_ADMIN_TOKEN_DEV }}" >> ~/.deck.yaml |
+        echo "kong-addr: $KONG_ADDR_DEV" >> ~/.deck.yaml |
+        echo "Deck config: " |
         cat ~/.deck.yaml
 
       - name: deck diff
