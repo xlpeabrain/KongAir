@@ -43,11 +43,6 @@ jobs:
               - 'flight-data/flights/kong/**'
               - 'flight-data/routes/openapi.yaml'
               - 'flight-data/routes/kong/**'
-              - 'sales/bookings/opeanapi.yaml'
-              - 'sales/bookings/kong/**'
-              - 'sales/customer/opeanapi.yaml'
-              - 'sales/customer/kong/**'
-              - 'experience/kong/**'
               - 'platform/kong/**'
 
   oas-to-kong:
@@ -65,7 +60,7 @@ jobs:
       - name: Setup deck
         uses: xlpeabrain/setup-deck@v1
         with:
-          deck-version: '1.26.0'
+          deck-version: '1.49.2'
           wrapper: false
 
       - name: Convert Flights API to Kong
@@ -87,24 +82,6 @@ jobs:
             deck file patch flight-data/routes/kong/patches.yaml | \
             deck file add-tags -o .github/artifacts/kong/flight-data-routes-kong.yaml \
               --selector "$.services[*]" --selector "$.services[*].routes[*]" flight-data
-
-      - name: Convert Bookings API to Kong
-        # In two steps, convert the OpenAPI Spec to a Kong declarative configuration
-        #   and then patch the result with the data in the kong/patches.yaml
-        run: |
-          deck file openapi2kong -s sales/bookings/openapi.yaml | \
-            deck file patch  sales/bookings/kong/patches.yaml | \
-            deck file add-tags -o .github/artifacts/kong/sales-bookings-kong.yaml \
-              --selector "$.services[*]" --selector "$.services[*].routes[*]" sales
-
-      - name: Convert Customers API to Kong
-        # In two steps, convert the OpenAPI Spec to a Kong declarative configuration
-        #   and then patch the result with the data in the kong/patches.yaml
-        run: |
-          deck file openapi2kong -s sales/customer/openapi.yaml | \
-            deck file patch sales/customer/kong/patches.yaml | \
-            deck file add-tags -o .github/artifacts/kong/sales-customer-kong.yaml --selector "$.services[*]" \
-              --selector "$.services[*].routes[*]" sales
 
       - name: Combine Kong Configurations
         # Combine all the previous OAS->Kong configurations into one and put it in a well known place
