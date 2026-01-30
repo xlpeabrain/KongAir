@@ -39,6 +39,14 @@ jobs:
       - name: stage combined file for PRD
         run: cp platform/kong/.generated/kong.yaml PRD/kong/kong.yaml
 
+      - name: Create deck config
+        run: |
+        echo "skip-workspace-crud: true" > ~/.deck.yaml
+        echo "headers: Kong-Admin-Token:${{ secrets.KONG_ADMIN_TOKEN_DEV }}" >> ~/.deck.yaml
+        echo "kong-addr: $KONG_ADDR_DEV" >> ~/.deck.yaml
+        echo "Deck config: "
+        cat ~/.deck.yaml
+
       - name: deck diff
         id: deck-diff
         # deck diff results in a multi-line output, which requires some
@@ -47,7 +55,7 @@ jobs:
         run: |
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "DIFF<<$EOF" >> $GITHUB_ENV
-          deck diff --select-tag platform-repo-managed -s PRD/kong/kong.yaml --konnect-runtime-group-name KongAir-PRD --konnect-token ${{ secrets.KONNECT_PAT }} >> $GITHUB_ENV
+          deck diff --select-tag platform-repo-managed -s PRD/kong/kong.yaml >> $GITHUB_ENV
           echo "$EOF" >> $GITHUB_ENV
 
       - name: Create PR to stage changes for the Kong Gateway in production
