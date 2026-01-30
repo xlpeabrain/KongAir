@@ -32,17 +32,6 @@ consumers:
   tags:
   - platform-repo-managed
   username: jsmith
-plugins:
-- config:
-    account_email: '{vault://env/acme/account_email}'
-    domains:
-    - api.kong-air.com
-    renew_threshold_days: 30
-  enabled: true
-  id: 85c9d396-5330-11ee-8c99-0242ac120002
-  name: acme
-  tags:
-  - platform-repo-managed
 services:
 - host: flights.kongair
   id: 0cef4d36-9c39-5ac2-9d9f-190d8ea8a252
@@ -208,18 +197,4 @@ services:
     - platform-repo-managed
   tags:
   - platform-repo-managed
-- name: acme-dummy-service
-  routes:
-  - hosts:
-    - api.kong-air.com
-    name: acme-dummy-route
-    paths:
-    - /.well-known/acme-challenge
-    protocols:
-    - http
-    tags:
-    - platform-repo-managed
-  tags:
-  - platform-repo-managed
-  url: http://127.0.0.1:65535
 upstreams: []
