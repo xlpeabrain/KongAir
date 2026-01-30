@@ -35,9 +35,17 @@ jobs:
           deck-version: '1.55.0'
           wrapper: false
 
+      - name: Create deck config
+        run: |
+          echo "skip-workspace-crud: true" > ~/.deck.yaml |
+          echo "headers: Kong-Admin-Token:${{ secrets.KONG_ADMIN_TOKEN_DEV }}" >> ~/.deck.yaml |
+          echo "kong-addr: ${{ vars.KONG_ADDR_DEV }}" >> ~/.deck.yaml |
+          echo "Deck config: " |
+          echo "$(cat ~/.deck.yaml)"
+
       - name: deck sync
         run: |
-          deck sync --select-tag platform-repo-managed \
-              -s PRD/kong/kong.yaml \
-              --konnect-runtime-group-name KongAir-PRD \
-              --konnect-token ${{ secrets.KONNECT_PAT }}
+          deck gateway sync --select-tag platform-repo-managed \
+              PRD/kong/kong.yaml \
+              -w flights-team
+
