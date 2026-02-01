@@ -122,20 +122,6 @@ services:
     tags:
     - flight-data
     - platform-repo-managed
-  - id: 89f28ad3-74db-5149-8fa5-f7fffbfda79c
-    methods:
-    - GET
-    name: routes-service_get-routes
-    paths:
-    - ~/routes$
-    plugins: []
-    protocols:
-    - https
-    regex_priority: 200
-    strip_path: false
-    tags:
-    - flight-data
-    - platform-repo-managed
   - id: 831bf89a-08be-5dbd-bcd2-aa2348d784d3
     methods:
     - GET
