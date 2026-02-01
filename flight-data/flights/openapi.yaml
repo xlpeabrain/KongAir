@@ -1,6 +1,5 @@
 ---
 # OpenAPI Spec for the KongAir Flights service
-#
 openapi: 3.0.0
 
 info:
@@ -16,7 +15,7 @@ paths:
   /health:
     get:
       summary: Health check endpoint for Kubernetes
-      description: Endpoint that returns the service health status.
+      description: This Endpoint that returns the service health status.
       responses:
         '200':
           description: Service is healthy
