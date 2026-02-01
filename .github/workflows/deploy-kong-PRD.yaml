@@ -46,6 +46,6 @@ jobs:
 
       - name: deck sync
         run: |
-          deck gateway sync --select-tag platform-repo-managed \
+          deck gateway sync -w ${{ vars.WORKSPACE_FLIGHTS_TEAM }} --select-tag platform-repo-managed \
           PRD/kong/kong.yaml 
 
