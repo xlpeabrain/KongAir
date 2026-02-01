@@ -39,11 +39,11 @@ jobs:
       - name: stage combined file for PRD
         run: cp platform/kong/.generated/kong.yaml PRD/kong/kong.yaml
 
+# echo "skip-workspace-crud: true" > ~/.deck.yaml |
+          # echo "headers: Kong-Admin-Token:${{ secrets.KONG_ADMIN_TOKEN_DEV }}" >> ~/.deck.yaml |
+          # echo "kong-addr: ${{ vars.KONG_ADDR_DEV }}" >> ~/.deck.yaml |
       - name: Create deck config
         run: |
-          echo "skip-workspace-crud: true" > ~/.deck.yaml |
-          echo "headers: Kong-Admin-Token:${{ secrets.KONG_ADMIN_TOKEN_DEV }}" >> ~/.deck.yaml |
-          echo "kong-addr: ${{ vars.KONG_ADDR_DEV }}" >> ~/.deck.yaml |
           echo "Deck config: " |
           echo "$(cat ~/.deck.yaml)"
 
