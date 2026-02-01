@@ -44,6 +44,7 @@ jobs:
           echo "skip-workspace-crud: true" > ~/.deck.yaml |
           echo "headers: Kong-Admin-Token:${{ secrets.KONG_ADMIN_TOKEN_DEV }}" >> ~/.deck.yaml |
           echo "kong-addr: ${{ vars.KONG_ADDR_DEV }}" >> ~/.deck.yaml |
+          echo "workspace: ${{vars.WORKSPACE_FLIGHTS_TEAM}}" >> ~/.deck.yaml |
           echo "Deck config: " |
           echo "$(cat ~/.deck.yaml)"
 
@@ -55,7 +56,7 @@ jobs:
         run: |
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "DIFF<<$EOF" >> $GITHUB_ENV
-          deck gateway diff -w flights-team --select-tag platform-repo-managed PRD/kong/kong.yaml >> $GITHUB_ENV
+          deck gateway diff --select-tag platform-repo-managed PRD/kong/kong.yaml >> $GITHUB_ENV
           echo "$EOF" >> $GITHUB_ENV
 
       - name: Create PR to stage changes for the Kong Gateway in production
