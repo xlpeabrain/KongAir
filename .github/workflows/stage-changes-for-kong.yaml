@@ -89,11 +89,11 @@ jobs:
           deck file merge \
             .github/artifacts/kong/*-kong.yaml -o .github/artifacts/kong/kong-combined.yaml
 
-      - name: Merge Experience API Configurations
-        run: |
-          deck file merge \
-            .github/artifacts/kong/kong-combined.yaml experience/kong/experience-service.yaml \
-            -o .github/artifacts/kong/kong-combined.yaml
+      # - name: Merge Experience API Configurations
+      #   run: |
+      #     deck file merge \
+      #       .github/artifacts/kong/kong-combined.yaml experience/kong/experience-service.yaml \
+      #       -o .github/artifacts/kong/kong-combined.yaml
 
       - name: Platform Team Kong Additions
         # The platform team has their own things to add to the final Kong configuration.
