@@ -32,10 +32,74 @@ consumers:
   tags:
   - platform-repo-managed
   username: jsmith
-level: ERROR
-msg: unable to locate reference anywhere in the rolodex
-reference: '#/components/schemas/Flight'
 services:
+- host: flights.kongair
+  id: 0cef4d36-9c39-5ac2-9d9f-190d8ea8a252
+  name: flights-service
+  path: /
+  plugins: []
+  port: 8080
+  protocol: http
+  routes:
+  - id: 7b2dbd94-ec5b-5ae8-b6d5-4c8b16ce0b06
+    methods:
+    - GET
+    name: flights-service_get-flights
+    paths:
+    - ~/flights$
+    plugins: []
+    protocols:
+    - https
+    regex_priority: 200
+    strip_path: false
+    tags:
+    - flight-data
+    - platform-repo-managed
+  - id: 3210c3ed-9976-500d-ac03-07eaac972ad0
+    methods:
+    - GET
+    name: flights-service_get-flight-by-number
+    paths:
+    - ~/flights/(?<flightnumber>[^#?/]+)$
+    plugins: []
+    protocols:
+    - https
+    regex_priority: 100
+    strip_path: false
+    tags:
+    - flight-data
+    - platform-repo-managed
+  - id: 08020aa2-6106-59ec-903a-3459e7cbb629
+    methods:
+    - GET
+    name: flights-service_get-flight-details
+    paths:
+    - ~/flights/(?<flightnumber>[^#?/]+)/details$
+    plugins: []
+    protocols:
+    - https
+    regex_priority: 100
+    strip_path: false
+    tags:
+    - flight-data
+    - platform-repo-managed
+  - id: a5023323-0468-5a77-baf2-13578fec61b0
+    methods:
+    - GET
+    name: flights-service_health_get
+    paths:
+    - ~/health$
+    plugins: []
+    protocols:
+    - https
+    regex_priority: 200
+    strip_path: false
+    tags:
+    - flight-data
+    - platform-repo-managed
+  tags:
+  - flight-data
+  - platform-repo-managed
 - host: routes.kongair
   id: 5bbc0ad8-3b7c-5dfe-a676-b28f30523a6f
   name: routes-service
@@ -89,5 +153,4 @@ services:
   tags:
   - flight-data
   - platform-repo-managed
-time: "2026-02-01T14:49:51.953651913Z"
 upstreams: []
