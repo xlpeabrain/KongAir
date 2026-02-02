@@ -39,10 +39,14 @@ jobs:
       - name: stage combined file for PRD
         run: cp platform/kong/.generated/kong.yaml PRD/kong/kong.yaml
 
-# echo "skip-workspace-crud: true" > ~/.deck.yaml |
-          # echo "headers: Kong-Admin-Token:${{ secrets.KONG_ADMIN_TOKEN_DEV }}" >> ~/.deck.yaml |
-          # echo "kong-addr: ${{ vars.KONG_ADDR_DEV }}" >> ~/.deck.yaml |
-      - name: Create deck config
+      # Local running is running native, and sharing the same file system
+      # create the enviroment variables or .deck.yaml as needed for your setup
+      # https://developer.konghq.com/deck/configuration/#environment-variables
+      # eg deck.yaml
+      # skip-workspace-crud: true
+      # headers: Kong-Admin-Token:${{ secrets.KONG_ADMIN_TOKEN }}
+      # kong-addr: ${{ var.KONG_ADMIN_URL }} 
+      - name: check deck config
         run: |
           echo "Deck config: " |
           echo "$(cat ~/.deck.yaml)"

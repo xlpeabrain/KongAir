@@ -60,7 +60,7 @@ jobs:
       - name: Setup deck
         uses: xlpeabrain/setup-deck@v1
         with:
-          deck-version: '1.49.2'
+          deck-version: '1.54.0'
           wrapper: false
 
       - name: Convert Flights API to Kong
