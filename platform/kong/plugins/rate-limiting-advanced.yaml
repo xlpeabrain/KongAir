@@ -1,11 +1,11 @@
-_format_version: "3.0"
-plugins:
-  - name: rate-limiting-advanced
-    config:
-      limit:
-      - 500
-      window_size:
-      - 3600
-      window_type: sliding
-      disable_penalty: false
-      namespace: global-namespace
+# _format_version: "3.0"
+# plugins:
+#   - name: rate-limiting-advanced
+#     config:
+#       limit:
+#       - 500
+#       window_size:
+#       - 3600
+#       window_type: sliding
+#       disable_penalty: false
+#       namespace: global-namespace
