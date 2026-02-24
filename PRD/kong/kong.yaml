@@ -32,6 +32,23 @@ consumers:
   tags:
   - platform-repo-managed
   username: jsmith
+plugins:
+- config:
+    dictionary_name: kong_rate_limiting_throttling
+    disable_penalty: true
+    limit:
+    - 5
+    strategy: local
+    throttling:
+      enabled: true
+      interval: 30
+      queue_limit: 5
+      retry_times: 3
+    window_size:
+    - 60
+  name: rate-limiting-advanced
+  tags:
+  - platform-repo-managed
 services:
 - host: flights.kongair
   id: 0cef4d36-9c39-5ac2-9d9f-190d8ea8a252
