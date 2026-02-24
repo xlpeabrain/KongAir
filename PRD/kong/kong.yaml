@@ -32,18 +32,6 @@ consumers:
   tags:
   - platform-repo-managed
   username: jsmith
-plugins:
-- config:
-    disable_penalty: false
-    limit:
-    - 500
-    namespace: global-namespace
-    window_size:
-    - 3600
-    window_type: sliding
-  name: rate-limiting-advanced
-  tags:
-  - platform-repo-managed
 services:
 - host: flights.kongair
   id: 0cef4d36-9c39-5ac2-9d9f-190d8ea8a252
