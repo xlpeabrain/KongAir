@@ -3,14 +3,9 @@ plugins:
   - name: rate-limiting-advanced
     config:
       limit:
-      - 5
+      - 500
       window_size:
-      - 60
-      strategy: local
-      disable_penalty: true
-      throttling:
-        enabled: true
-        interval: 30
-        queue_limit: 5
-        retry_times: 3
-      dictionary_name: kong_rate_limiting_throttling
+      - 3600
+      window_type: sliding
+      disable_penalty: false
+      namespace: global-namespace
