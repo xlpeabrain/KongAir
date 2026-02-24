@@ -34,18 +34,13 @@ consumers:
   username: jsmith
 plugins:
 - config:
-    dictionary_name: kong_rate_limiting_throttling
-    disable_penalty: true
+    disable_penalty: false
     limit:
-    - 5
-    strategy: local
-    throttling:
-      enabled: true
-      interval: 30
-      queue_limit: 5
-      retry_times: 3
+    - 500
+    namespace: global-namespace
     window_size:
-    - 60
+    - 3600
+    window_type: sliding
   name: rate-limiting-advanced
   tags:
   - platform-repo-managed
